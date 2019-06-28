@@ -60,7 +60,7 @@ def main():
     num_images = 0
     num_correct = 0
 
-    image_files = glob.glob(test_dir + '**/*.png', recursive=True)
+    image_files = glob.glob(test_dir + '**/*.*', recursive=True)
     num_images = len(image_files)
     for i, image_file in enumerate(image_files):
         identity = os.path.basename(os.path.dirname(image_file))
@@ -109,7 +109,7 @@ def recognize(image_file, le, recognizer, detector, embedder, min_confidence):
                     box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
                     (startX, startY, endX, endY) = box.astype("int")
                     # extract the face ROI
-                    face = image #[startY:endY, startX:endX]
+                    face = image[startY:endY, startX:endX]
                     (fH, fW) = face.shape[:2]
 
                     # ensure the face width and height are sufficiently large

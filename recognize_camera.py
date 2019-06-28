@@ -85,7 +85,7 @@ def recognize(image, le, recognizer, detector, embedder, min_confidence):
                     (startX, startY, endX, endY) = box.astype("int")
 
                     # extract the face ROI
-                    face = image #[startY:endY, startX:endX]
+                    face = image[startY:endY, startX:endX]
                     (fH, fW) = face.shape[:2]
 
                     # ensure the face width and height are sufficiently large

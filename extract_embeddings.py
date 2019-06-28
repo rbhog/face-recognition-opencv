@@ -7,6 +7,9 @@ import pickle
 import cv2
 import os
 
+# To extract embeddings for the test dataset
+# python3 extract_embeddings.py -e output/test_embeddings.pickle -i test_dataset
+
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--dataset", default="unprocessed_dataset",
@@ -87,7 +90,7 @@ for (i, imagePath) in enumerate(imagePaths):
 			(startX, startY, endX, endY) = box.astype("int")
 
 			# extract the face ROI and grab the ROI dimensions
-			face = image #[startY:endY, startX:endX]
+			face = image[startY:endY, startX:endX]
 			(fH, fW) = face.shape[:2]
 
 			# ensure the face width and height are sufficiently large
